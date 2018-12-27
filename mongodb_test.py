@@ -8,9 +8,93 @@ my_db = my_client["test_db"]
 my_col = my_db["clients"]
 # print(my_client.list_database_names())
 
+# for x in my_col.find():
+#     print(x)
+
+"""Limit the result to only return 5 documents:"""
+my_result = my_col.find().limit(5)
+for x in my_result:
+    print(x)
+
+"""Update all documents where the address starts with letter 'S':"""
+# my_query = {"address": {"$regex": "^S"}}
+# new_values = {"$set": {"name": "Minnie"}}
+#
+# x = my_col.update_many(my_query, new_values)
+# print(x.matched_count, " documents updated.")
+
+"""Change the address from 'Valley 345' to 'Canyon 123':"""
+# my_query = {"address": "Valley 345"}
+# new_values = {"$set": {"address": "Canyon 123"}}
+#
+# my_col.update_one(my_query, new_values)
+#
+# for x in my_col.find():
+#     print(x)
+
+"""Delete the 'customers' collection:"""
+# my_col.drop()
+
+"""Delete all documents in the 'clients' collection:"""
+# x = my_col.delete_many({})
+# print(x.deleted_count, " documents deleted.")
+
+"""Delete all documents were the address starts with the letter S:"""
+# my_query = {"address": {"$regex": "^S"}}
+# x = my_col.delete_many(my_query)
+#
+# print(x.deleted_count, " documents deleted.")
+
+"""Delete the document with the address 'Mountain 21':"""
+# my_query = {"address": "Mountain 21"}
+# my_col.delete_one(my_query)
+
+"""Sort the result alphabetically bt name:"""
+# my_doc = my_col.find().sort("address")
+
+# Sort the result reverse alphabetically by name:
+# my_doc = my_col.find().sort("name", -1)
+#
+# for x in my_doc:
+#     print(x)
+
+"""Find documents where the address starts with the letter 'S':"""
+# my_query = {"address": {"$regex": "^S"}}
+# my_doc = my_col.find(my_query)
+#
+# for x in my_doc:
+#     print(x)
+
+"""Find documents where the address starts with the letter 'S' or higher:"""
+# my_query = {
+#     "address": {"$gt": "S"}
+# }
+# my_doc = my_col.find(my_query)
+# for x in my_doc:
+#     print(x)
+
+
+"""Find document(s) with the address "Park Lane 38":"""
+# my_query = {"address": "Park Lane 38"}
+# my_doc = my_col.find(my_query)
+#
+# for x in my_doc:
+#     print(x)
+
+"""Return only the names and addresses, not the _ids:"""
+# for x in my_col.find({}, {"address": 0}):
+#     print(x)
+
+# for x in my_col.find({}, {"_id": 0, "name": 1, "address": 1}):
+#     print(x)
+
+"""Return all documents in the 'clients' collection, and print each document:"""
+# for x in my_col.find():
+#     print(x)
+
 """Find the first document in the customers collection:"""
-x = my_col.find_one()
-print(x)
+# x = my_col.find_one()
+# print(x)
 
 """Check if the "customers" collection exists:"""
 # coll_list = my_db.list_collection_names()
